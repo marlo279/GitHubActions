@@ -9,22 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-        
-      - name: Installeer Java (vereist voor PMD)
-        uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
-
-      - name: Download en installeer PMD
-        run: |
-          wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.10.0/pmd-dist-7.10.0-src.zip
-          unzip pmd-dist-7.10.0-src.zip
-          mv pmd-src-7.10 pmd
-
-      - name: Voer PMD uit voor Apex
-        run: |
-          ./pmd/bin/run.sh pmd -d ./force-app/main/default/classes -R rulesets/apex/quickstart.xml -f text
+          java-version: '11'
+      - uses: pmd/pmd-github-action@v2
+        with:
+          rulesets: 'ruleset.xml'
