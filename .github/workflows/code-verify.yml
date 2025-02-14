@@ -21,10 +21,10 @@ jobs:
 
       - name: Download en installeer PMD
         run: |
-          wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0/pmd-bin-7.0.0.zip
+          wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.10.0/pmd-7.10.0-cyclonedx.json
           unzip pmd-bin-7.0.0.zip
           mv pmd-bin-7.0.0 pmd
-          
+
       - name: Voer PMD uit voor Apex
         run: |
           ./pmd/bin/run.sh pmd -d ./force-app/main/default/classes -R rulesets/apex/quickstart.xml -f text
