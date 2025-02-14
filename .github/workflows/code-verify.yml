@@ -15,4 +15,9 @@ jobs:
           java-version: '11'
       - uses: pmd/pmd-github-action@v2
         with:
-          rulesets: 'ruleset.xml'
+            rulesets: 'ruleset.xml'
+      
+      - name: Upload SARIF Report
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: pmd-report.sarif
